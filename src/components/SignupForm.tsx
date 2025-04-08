@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import { Check } from 'lucide-react';
 import { toast } from 'sonner';
@@ -66,27 +67,6 @@ const SignupForm = () => {
     };
   }, [scriptLoaded]);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    
-    // If ConvertKit script is not loaded, collect form data manually
-    if (!scriptLoaded) {
-      const formData = new FormData(e.currentTarget);
-      const email = formData.get('email_address') as string;
-      const firstName = formData.get('fields[first_name]') as string;
-      
-      console.log('ConvertKit not available, manual form submission:', { email, firstName });
-      
-      // Show success message for now (in production you would send this to your server)
-      toast.success("Success! Check your email for instructions.");
-    } else {
-      console.log("ConvertKit form handling submission");
-      // ConvertKit form will handle submission automatically
-      // We'll let the default behavior continue
-      return true;
-    }
-  };
-
   return (
     <div id="signup-section" className="w-full bg-background py-20 px-4 relative scroll-mt-16">
       <div className="max-w-6xl mx-auto relative z-10">
@@ -135,7 +115,6 @@ const SignupForm = () => {
                 data-format="modal" 
                 data-version="5"
                 data-options="{&quot;settings&quot;:{&quot;after_subscribe&quot;:{&quot;action&quot;:&quot;message&quot;,&quot;success_message&quot;:&quot;Success! Check your email for instructions.&quot;,&quot;redirect_url&quot;:&quot;https://mattegreenmedia.com/cx-checklist/&quot;},&quot;analytics&quot;:{&quot;google&quot;:null,&quot;fathom&quot;:null,&quot;facebook&quot;:null,&quot;segment&quot;:null,&quot;pinterest&quot;:null,&quot;sparkloop&quot;:null,&quot;googletagmanager&quot;:null},&quot;modal&quot;:{&quot;trigger&quot;:&quot;exit&quot;,&quot;scroll_percentage&quot;:null,&quot;timer&quot;:5,&quot;devices&quot;:&quot;all&quot;,&quot;show_once_every&quot;:15},&quot;powered_by&quot;:{&quot;show&quot;:true,&quot;url&quot;:&quot;https://kit.com/features/forms?utm_campaign=poweredby&amp;utm_content=form&amp;utm_medium=referral&amp;utm_source=dynamic&quot;},&quot;recaptcha&quot;:{&quot;enabled&quot;:false},&quot;return_visitor&quot;:{&quot;action&quot;:&quot;show&quot;,&quot;custom_content&quot;:&quot;&quot;},&quot;slide_in&quot;:{&quot;display_in&quot;:&quot;bottom_right&quot;,&quot;trigger&quot;:&quot;timer&quot;,&quot;scroll_percentage&quot;:null,&quot;timer&quot;:5,&quot;devices&quot;:&quot;all&quot;,&quot;show_once_every&quot;:15},&quot;sticky_bar&quot;:{&quot;display_in&quot;:&quot;top&quot;,&quot;trigger&quot;:&quot;timer&quot;,&quot;scroll_percentage&quot;:null,&quot;timer&quot;:5,&quot;devices&quot;:&quot;all&quot;,&quot;show_once_every&quot;:15}},&quot;version&quot;:&quot;5&quot;}"
-                onSubmit={handleSubmit}
               >
                 <div className="formkit-background" style={{ 
                   backgroundImage: "url('https://embed.filekitcdn.com/e/xoL6VaUcUbq1GHKbjhnWWm/mYjDtD3P1pEmMgFyvCsfWQ')", 
@@ -147,26 +126,22 @@ const SignupForm = () => {
                   
                   <div data-element="fields" data-stacked="true" className="space-y-5">
                     <div className="formkit-field">
-                      <label htmlFor="first-name" className="text-sm font-medium text-gray-700 mb-1 block">First Name</label>
                       <input 
-                        id="first-name"
-                        className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all duration-200" 
+                        className="formkit-input w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all duration-200" 
                         aria-label="First Name" 
                         name="fields[first_name]" 
                         required 
-                        placeholder="Your first name" 
+                        placeholder="First Name" 
                         type="text" 
                       />
                     </div>
                     
                     <div className="formkit-field">
-                      <label htmlFor="email-address" className="text-sm font-medium text-gray-700 mb-1 block">Email Address</label>
                       <input 
-                        id="email-address"
-                        className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all duration-200" 
+                        className="formkit-input w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all duration-200" 
                         name="email_address" 
                         aria-label="Email Address" 
-                        placeholder="your.email@example.com" 
+                        placeholder="Email Address" 
                         required 
                         type="email" 
                       />
