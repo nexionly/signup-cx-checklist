@@ -1,8 +1,17 @@
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Check } from 'lucide-react';
 
 const SignupForm = () => {
+  useEffect(() => {
+    // Ensure ConvertKit scripts are properly loaded and initialized
+    if (window.ck && typeof window.ck.loadForm === 'function') {
+      window.ck.loadForm && window.ck.loadForm();
+    } else {
+      console.error('ConvertKit script not loaded properly');
+    }
+  }, []);
+
   return (
     <div id="signup-section" className="w-full bg-background py-20 px-4 relative scroll-mt-16">
       <div className="max-w-6xl mx-auto relative z-10">
