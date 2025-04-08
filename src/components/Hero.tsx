@@ -7,10 +7,10 @@ const Hero = () => {
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="max-w-4xl">
           <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-6 fade-in">
-            Transform Your Customer Experience with Our Proven Checklist
+            Your Expert Guide to Customer Experience Excellence
           </h1>
           <p className="text-xl text-muted-foreground mb-8 max-w-2xl slide-up">
-            Get access to the same framework top companies use to create exceptional customer experiences that drive growth and loyalty.
+            Get your free guide to ensure you're hitting all the key elements of a winning CX strategy.
           </p>
         </div>
       </div>
