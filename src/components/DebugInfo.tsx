@@ -55,6 +55,11 @@ const DebugInfo = () => {
         visibilityState: document.visibilityState
       }
     });
+
+    // Check if SignupForm is causing errors due to missing ConvertKit script
+    if (!scripts.convertKit) {
+      console.warn('ConvertKit script is not loaded - this may affect the SignupForm component');
+    }
   }, []);
 
   return (
