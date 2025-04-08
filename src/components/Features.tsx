@@ -5,7 +5,7 @@ import { CheckCircle, BarChart2, Users, Target } from 'lucide-react';
 
 const Features = () => {
   return (
-    <section className="py-20 px-4 md:px-10 w-full bg-background relative">
+    <section className="py-24 px-4 md:px-10 w-full bg-background relative">
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-5">Why You Need This Checklist</h2>
@@ -14,7 +14,7 @@ const Features = () => {
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <BenefitCard 
             title="Identify Gaps" 
             description="Quickly spot weaknesses in your current customer experience that may be costing you revenue."

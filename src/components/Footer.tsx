@@ -1,11 +1,12 @@
 
 import React from 'react';
+import { ExternalLink } from 'lucide-react';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   
   return (
-    <footer className="w-full py-12 px-4 md:px-10 bg-secondary/30 mt-16">
+    <footer className="w-full py-16 px-4 md:px-10 bg-secondary/40 mt-0">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
           <div>
@@ -21,17 +22,17 @@ const Footer = () => {
                 href="https://mattegreenmedia.com" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                className="flex items-center text-sm text-muted-foreground hover:text-primary transition-colors"
               >
-                Website
+                Website <ExternalLink className="ml-1 h-3 w-3" />
               </a>
               <a 
                 href="https://linkedin.com/" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                className="flex items-center text-sm text-muted-foreground hover:text-primary transition-colors"
               >
-                LinkedIn
+                LinkedIn <ExternalLink className="ml-1 h-3 w-3" />
               </a>
             </div>
           </div>

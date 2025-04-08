@@ -1,18 +1,37 @@
 
 import React from 'react';
+import { Check } from 'lucide-react';
 
 const SignupForm = () => {
   return (
-    <div id="signup-section" className="w-full bg-background py-16 px-4 relative">
+    <div id="signup-section" className="w-full bg-background py-20 px-4 relative scroll-mt-16">
       <div className="max-w-6xl mx-auto relative z-10">
         <div className="flex flex-col lg:flex-row lg:items-center lg:space-x-12">
           {/* Left side - Header and subheader */}
           <div className="lg:w-1/2 mb-8 lg:mb-0">
             <div className="text-center lg:text-left">
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-700 mb-6">Customer Experience <br />Essentials Checklist</h2>
-              <p className="text-gray-600 text-base md:text-lg">
-                This <strong>FREE</strong> checklist is your actionable guide to building a high-performing CX team from the ground up. <span className="text-pink-500 font-semibold">It's designed to help you systematically consider all the critical elements</span>, from defining your strategic vision to implementing the right processes and tools across Onboarding, Support, Customer Success, and more.
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">Customer Experience <br /><span className="text-primary">Essentials Checklist</span></h2>
+              <p className="text-gray-600 text-base md:text-lg mb-6">
+                This <strong>FREE</strong> checklist is your actionable guide to building a high-performing CX team from the ground up.
               </p>
+              <p className="text-gray-600 text-base md:text-lg mb-6">
+                <span className="text-primary font-semibold">It's designed to help you systematically consider all the critical elements</span>, from defining your strategic vision to implementing the right processes and tools.
+              </p>
+              
+              <div className="hidden lg:block space-y-4 mt-8">
+                <div className="flex items-center">
+                  <Check className="text-primary mr-2 h-5 w-5" />
+                  <span className="text-gray-700">Optimize your customer onboarding</span>
+                </div>
+                <div className="flex items-center">
+                  <Check className="text-primary mr-2 h-5 w-5" />
+                  <span className="text-gray-700">Improve support effectiveness</span>
+                </div>
+                <div className="flex items-center">
+                  <Check className="text-primary mr-2 h-5 w-5" />
+                  <span className="text-gray-700">Boost customer success metrics</span>
+                </div>
+              </div>
             </div>
           </div>
           
@@ -20,8 +39,9 @@ const SignupForm = () => {
           <div className="lg:w-1/2">
             <div 
               id="kit-form-container" 
-              className="bg-white p-6 md:p-8 rounded-2xl shadow-lg border border-border/30"
+              className="bg-white p-8 md:p-10 rounded-2xl shadow-xl border border-border/30 hover:shadow-2xl transition-shadow duration-300"
             >
+              <h3 className="text-xl font-bold mb-6 text-center">Get Your Free CX Checklist</h3>
               <form 
                 action="https://app.kit.com/forms/7777858/subscriptions" 
                 className="seva-form formkit-form" 
@@ -34,30 +54,34 @@ const SignupForm = () => {
               >
                 <div className="formkit-background" style={{ 
                   backgroundImage: "url('https://embed.filekitcdn.com/e/xoL6VaUcUbq1GHKbjhnWWm/mYjDtD3P1pEmMgFyvCsfWQ')", 
-                  opacity: 0.2 
+                  opacity: 0.05 
                 }}></div>
                 
                 <div data-style="minimal">
                   <ul className="formkit-alert formkit-alert-error" data-element="errors" data-group="alert"></ul>
                   
-                  <div data-element="fields" data-stacked="true" className="space-y-4">
+                  <div data-element="fields" data-stacked="true" className="space-y-5">
                     <div className="formkit-field">
+                      <label htmlFor="first-name" className="text-sm font-medium text-gray-700 mb-1 block">First Name</label>
                       <input 
-                        className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary" 
+                        id="first-name"
+                        className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all duration-200" 
                         aria-label="First Name" 
                         name="fields[first_name]" 
                         required 
-                        placeholder="First Name" 
+                        placeholder="Your first name" 
                         type="text" 
                       />
                     </div>
                     
                     <div className="formkit-field">
+                      <label htmlFor="email-address" className="text-sm font-medium text-gray-700 mb-1 block">Email Address</label>
                       <input 
-                        className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary" 
+                        id="email-address"
+                        className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all duration-200" 
                         name="email_address" 
                         aria-label="Email Address" 
-                        placeholder="Email Address" 
+                        placeholder="your.email@example.com" 
                         required 
                         type="email" 
                       />
@@ -65,7 +89,7 @@ const SignupForm = () => {
                     
                     <button 
                       data-element="submit" 
-                      className="formkit-submit formkit-submit w-full bg-pink-500 hover:bg-pink-600 text-white font-bold py-3 px-6 rounded-lg transition-colors duration-200"
+                      className="formkit-submit formkit-submit w-full bg-primary hover:bg-primary/90 text-white font-bold py-4 px-6 rounded-lg transition-all duration-200 shadow-md hover:shadow-lg transform hover:-translate-y-1"
                     >
                       <div className="formkit-spinner">
                         <div></div>
@@ -77,7 +101,7 @@ const SignupForm = () => {
                   </div>
                   
                   <div className="formkit-guarantee text-center mt-4 text-sm text-gray-600" data-element="guarantee">
-                    We won't send you spam. Unsubscribe at any time.
+                    We respect your privacy. Unsubscribe at any time.
                   </div>
                   
                   <div className="formkit-powered-by-convertkit-container mt-4 text-center">
