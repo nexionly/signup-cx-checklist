@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { Check } from 'lucide-react';
 import { toast } from 'sonner';
@@ -7,30 +6,65 @@ const SignupForm = () => {
   const [scriptLoaded, setScriptLoaded] = useState(false);
 
   useEffect(() => {
-    // Check if ConvertKit script is loaded
+    // Check if ConvertKit script is already loaded
     if (window.ck && typeof window.ck.loadForm === 'function') {
+      console.log("ConvertKit script already loaded, initializing form");
       window.ck.loadForm();
       setScriptLoaded(true);
-    } else {
-      console.warn('ConvertKit script not loaded properly');
-      // Load the script dynamically if not already loaded
-      const existingScript = document.querySelector('script[src*="convertkit"]');
-      if (!existingScript) {
-        const script = document.createElement('script');
-        script.src = 'https://f.convertkit.com/ckjs/ck.5.js';
-        script.async = true;
-        script.onload = () => {
-          if (window.ck && typeof window.ck.loadForm === 'function') {
-            window.ck.loadForm();
-            setScriptLoaded(true);
-          } else {
-            console.error('Failed to initialize ConvertKit script');
-          }
-        };
-        document.body.appendChild(script);
-      }
+      return;
     }
-  }, []);
+    
+    console.log("ConvertKit script not detected, attempting to load");
+    
+    // Check if script tag exists but hasn't initialized properly
+    const existingScript = document.querySelector('script[src*="convertkit"]');
+    
+    if (existingScript) {
+      console.log("ConvertKit script tag exists but not initialized, setting up listener");
+      // Script exists but may not be fully loaded
+      const checkCK = setInterval(() => {
+        if (window.ck && typeof window.ck.loadForm === 'function') {
+          console.log("ConvertKit initialized after delay");
+          window.ck.loadForm();
+          setScriptLoaded(true);
+          clearInterval(checkCK);
+        }
+      }, 500);
+      
+      // Cleanup interval after 10 seconds if not loaded
+      setTimeout(() => {
+        clearInterval(checkCK);
+        if (!scriptLoaded) {
+          console.log("ConvertKit failed to initialize after waiting");
+        }
+      }, 10000);
+    } else {
+      console.log("No ConvertKit script found, adding to page");
+      // Load the script dynamically
+      const script = document.createElement('script');
+      script.src = 'https://f.convertkit.com/ckjs/ck.5.js';
+      script.async = true;
+      script.onload = () => {
+        console.log("ConvertKit script loaded via dynamic insert");
+        if (window.ck && typeof window.ck.loadForm === 'function') {
+          window.ck.loadForm();
+          setScriptLoaded(true);
+        } else {
+          console.error('Failed to initialize ConvertKit script after loading');
+        }
+      };
+      document.body.appendChild(script);
+    }
+
+    return () => {
+      // Clean up any intervals if component unmounts
+      document.querySelectorAll('script[data-ck-interval]').forEach(el => {
+        const intervalId = parseInt(el.getAttribute('data-ck-interval') || '0');
+        if (intervalId) clearInterval(intervalId);
+        el.remove();
+      });
+    };
+  }, [scriptLoaded]);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -41,13 +75,16 @@ const SignupForm = () => {
       const email = formData.get('email_address') as string;
       const firstName = formData.get('fields[first_name]') as string;
       
-      // Show success message
-      toast.success("Success! Check your email for instructions.");
+      console.log('ConvertKit not available, manual form submission:', { email, firstName });
       
-      console.log('Form submitted manually:', { email, firstName });
-      // Here you would typically send the data to your server or API
+      // Show success message for now (in production you would send this to your server)
+      toast.success("Success! Check your email for instructions.");
+    } else {
+      console.log("ConvertKit form handling submission");
+      // ConvertKit form will handle submission automatically
+      // We'll let the default behavior continue
+      return true;
     }
-    // If script is loaded, the ConvertKit form will handle submission automatically
   };
 
   return (
