@@ -4,7 +4,6 @@ import Hero from '@/components/Hero';
 import Features from '@/components/Features';
 import SignupForm from '@/components/SignupForm';
 import Footer from '@/components/Footer';
-import DebugInfo from '@/components/DebugInfo';
 
 const Index = () => {
   return (
@@ -15,8 +14,6 @@ const Index = () => {
         <Features />
       </main>
       <Footer />
-      {/* Temporarily adding back DebugInfo for troubleshooting */}
-      <DebugInfo />
     </div>
   );
 };
